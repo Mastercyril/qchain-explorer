@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>13th Chamber — Revoke Mint &amp; Freeze Authority</title>
+<style>
+:root{--cyan:#22d3ee;--purple:#a855f7;--bg:#07070d;--card:#101018;--line:#26263a}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:
+  radial-gradient(900px 500px at 15% -10%,rgba(34,211,238,.16),transparent 60%),
+  radial-gradient(800px 500px at 90% 0%,rgba(168,85,247,.16),transparent 60%),var(--bg);
+  color:#e7e7f0;font:15px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  padding:28px 18px 60px;
+  background-image:linear-gradient(rgba(34,211,238,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,.045) 1px,transparent 1px);
+  background-size:44px 44px,44px 44px}
+.wrap{max-width:760px;margin:0 auto}
+h1{font-size:23px;margin:0 0 6px;background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:#8b8ba8;font-size:13px;margin-bottom:22px}
+.card{background:rgba(16,16,24,.86);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px;backdrop-filter:blur(6px)}
+.mint{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}
+.mint:last-child{border-bottom:0}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#9aa0b5;word-break:break-all}
+.ok{color:#34d399}.warn{color:#fbbf24}.bad{color:#f87171}
+button{width:100%;padding:14px;border:0;border-radius:11px;font:600 15px ui-sans-serif,system-ui;cursor:pointer;
+  background:linear-gradient(90deg,#0891b2,#7c3aed);color:#fff;transition:.18s;margin-top:6px}
+button:disabled{opacity:.45;cursor:not-allowed}
+button.ghost{background:transparent;border:1px solid var(--line);color:#c3c8dc}
+#log{margin-top:14px;font-size:12.5px;font-family:ui-monospace,Menlo,monospace;white-space:pre-wrap;color:#a9b0c6}
+a{color:var(--cyan)}
+</style></head><body><div class="wrap">
+<h1>Revoke Mint &amp; Freeze Authority</h1>
+<div class="sub">13th Chamber LLC · QSAM 350M &amp; QBTC 21M · this page can only revoke. It cannot move any tokens.</div>
+
+<div class="card">
+  <div class="mint"><span>Wallet</span><span id="who" class="mono">not connected</span></div>
+  <div id="mints"></div>
+  <button id="connect" class="ghost">Connect Phantom</button>
+  <button id="revoke" disabled>Revoke all four authorities</button>
+  <div id="log"></div>
+</div>
+
+<div class="card" style="font-size:13px;color:#8b8ba8">
+  Each revoke is a <b style="color:#c3c8dc">SetAuthority</b> instruction with the new authority set to null.
+  Permanent and irreversible. You will see 4 instructions in one approval. Fee: ~0.00002 SOL total.
+</div>
+</div>
+<script src="https://unpkg.com/@solana/web3.js@1.95.3/lib/index.iife.min.js"></script>
+<script>
+const TREASURY="2iG3NGn2pcRabznaU1ndC17JcQqewERhQL53G3Z5Suff";
+const MINTS=[
+ {label:"QSAM 350M", mint:"5nHg43TTkmCafvUPpjnvu57hWMRXUheN3CFdDuzdQM9x"},
+ {label:"QBTC 21M",  mint:"EMzyVtLsjyzMztFHQ7wYTGM8ojSDQJzstjmRsitnt1F9"}
+];
+const RPC="https://api.mainnet-beta.solana.com";
+const TOKEN_PROGRAM="TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA";
+const conn=new solanaWeb3.Connection(RPC,"confirmed");
+let provider=null, me=null;
+const log=m=>{document.getElementById("log").textContent+=m+"\n";};
+
+function setAuthIx(mintPk, authPk, type){ // 6=SetAuthority, type 0=mint 1=freeze, 0=None
+  return new solanaWeb3.TransactionInstruction({
+    programId:new solanaWeb3.PublicKey(TOKEN_PROGRAM),
+    keys:[{pubkey:mintPk,isSigner:false,isWritable:true},
+          {pubkey:authPk,isSigner:true,isWritable:false}],
+    data:Uint8Array.from([6,type,0])
+  });
+}
+
+async function readState(){
+  const box=document.getElementById("mints"); box.innerHTML="";
+  for(const m of MINTS){
+    const info=await conn.getParsedAccountInfo(new solanaWeb3.PublicKey(m.mint));
+    const i=info.value?.data?.parsed?.info;
+    const row=document.createElement("div"); row.className="mint";
+    const ma=i?.mintAuthority, fa=i?.freezeAuthority;
+    row.innerHTML=`<span>${m.label}</span><span class="mono">
+      mint: <b class="${ma?"bad":"ok"}">${ma?"ACTIVE":"none"}</b> ·
+      freeze: <b class="${fa?"bad":"ok"}">${fa?"ACTIVE":"none"}</b></span>`;
+    box.appendChild(row);
+  }
+}
+
+document.getElementById("connect").onclick=async()=>{
+  provider=window.phantom?.solana||window.solana;
+  if(!provider){
+    log("No Phantom found. Open this page inside the Phantom app: Phantom → browser → paste this URL.");
+    return;
+  }
+  try{
+    const r=await provider.connect();
+    me=r.publicKey.toString();
+    document.getElementById("who").textContent=me;
+    document.getElementById("who").className="mono "+(me===TREASURY?"ok":"warn");
+    document.getElementById("revoke").disabled=false;
+    if(me!==TREASURY) log("⚠ connected wallet is NOT the treasury. The revokes will fail unless it is "+TREASURY);
+    else log("Treasury key connected. Ready to revoke.");
+  }catch(e){ log("connect failed: "+e.message); }
+};
+
+document.getElementById("revoke").onclick=async()=>{
+  if(!provider||!me) return;
+  const btn=document.getElementById("revoke"); btn.disabled=true; btn.textContent="Waiting for approval…";
+  try{
+    const auth=new solanaWeb3.PublicKey(me);
+    const tx=new solanaWeb3.Transaction();
+    for(const m of MINTS){
+      const pk=new solanaWeb3.PublicKey(m.mint);
+      tx.add(setAuthIx(pk,auth,0));   // mint authority -> null
+      tx.add(setAuthIx(pk,auth,1));   // freeze authority -> null
+    }
+    tx.feePayer=auth;
+    tx.recentBlockhash=(await conn.getLatestBlockhash()).blockhash;
+    const {signature}=await provider.signAndSendTransaction(tx);
+    log("sent: "+signature);
+    log("confirming…");
+    await conn.confirmTransaction(signature,"confirmed");
+    log("confirmed: https://solscan.io/tx/"+signature);
+    log("");
+    await readState();
+    log("State refreshed above. Both mints should read none / none.");
+  }catch(e){ log("FAILED: "+(e.message||e)); }
+  btn.disabled=false; btn.textContent="Revoke all four authorities";
+};
+
+readState();
+</script></body></html>
