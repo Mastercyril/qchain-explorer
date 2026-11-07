@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>QSAM — Verified Token Contract | 13th Chamber LLC</title>
+<meta name="description" content="The canonical QSAM contract address, supply, and on-chain authority status, verifiable on Solscan."/>
+<style>
+:root{--cyan:#22d3ee;--purple:#a855f7;--bg:#07070d;--card:#0f0f18;--line:#242438;--txt:#e8e8f2;--dim:#8b8ba8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.65 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+ background-image:radial-gradient(900px 480px at 12% -8%,rgba(34,211,238,.15),transparent 60%),
+ radial-gradient(800px 460px at 92% -4%,rgba(168,85,247,.15),transparent 62%),
+ linear-gradient(rgba(34,211,238,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,.04) 1px,transparent 1px);
+ background-size:auto,auto,46px 46px,46px 46px}
+.wrap{max-width:820px;margin:0 auto;padding:40px 20px 70px}
+.brand{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:14px}
+h1{font-size:34px;line-height:1.15;margin:0 0 10px;background:linear-gradient(92deg,var(--cyan),var(--purple));
+ -webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:#a9a9c4;max-width:62ch;margin:0 0 28px}
+.card{background:rgba(15,15,24,.88);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:16px}
+.card.hi{border-color:rgba(34,211,238,.42);box-shadow:0 0 0 1px rgba(34,211,238,.12),0 18px 50px -28px rgba(34,211,238,.5)}
+.tag{display:inline-block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:4px 9px;border-radius:999px;
+ border:1px solid rgba(34,211,238,.4);color:var(--cyan);margin-bottom:14px}
+.tag.warnb{border-color:rgba(251,191,36,.45);color:#fbbf24}
+.tag.pur{border-color:rgba(168,85,247,.45);color:var(--purple)}
+h2{font-size:19px;margin:0 0 4px}
+.mut{color:var(--dim);font-size:13px}
+.addr{display:flex;align-items:center;gap:10px;margin-top:14px;background:#0a0a12;border:1px solid var(--line);
+ border-radius:10px;padding:11px 13px}
+.addr code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:#cfd6ea;word-break:break-all;flex:1}
+button.copy{background:transparent;border:1px solid var(--line);color:#a9b0c6;border-radius:7px;padding:6px 10px;
+ font-size:11.5px;cursor:pointer;white-space:nowrap}
+button.copy:hover{border-color:var(--cyan);color:var(--cyan)}
+table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px}
+td{padding:9px 0;border-bottom:1px solid var(--line)}
+td:first-child{color:var(--dim);width:45%}
+tr:last-child td{border-bottom:0}
+.ok{color:#34d399;font-weight:600}.bad{color:#fbbf24;font-weight:600}
+a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:18px}
+.stat{background:#0a0a12;border:1px solid var(--line);border-radius:11px;padding:14px}
+.stat .k{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+.stat .v{font-size:16px;font-weight:600}
+.warnbox{border-left:3px solid #fbbf24;background:rgba(251,191,36,.06);padding:14px 16px;border-radius:0 10px 10px 0;
+ font-size:13.5px;color:#d8d2bb;margin-top:16px}
+.foot{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:#6f6f8c;font-size:12.5px}
+</style></head><body><div class="wrap">
+<div class="brand">13th Chamber LLC · Token Registry</div>
+<h1>QSAM — the canonical contract</h1>
+<p class="lead">There is more than one token using the QSAM name. Only this contract is canonical. Everything below is
+verifiable on-chain in one click, without taking anyone's word for it.</p>
+
+<div class="card hi">
+  <span class="tag">Canonical QSAM</span>
+  <h2>Quantum System Access Module</h2>
+  <div class="mut">SPL token on Solana · 9 decimals</div>
+  <div class="addr"><code id="a1">48YZxAUXFcEG14kEWHyBBaEx1gabprkXxQsz2ViuPZPN</code>
+    <button class="copy" data-t="a1">Copy</button></div>
+  <div class="grid">
+    <div class="stat"><div class="k">Total supply</div><div class="v">1,000,000,000</div></div>
+    <div class="stat"><div class="k">Mint authority</div><div class="v ok">none</div></div>
+    <div class="stat"><div class="k">Freeze authority</div><div class="v ok">none</div></div>
+  </div>
+  <table>
+    <tr><td>Supply can never be inflated</td><td class="ok">mint authority revoked</td></tr>
+    <tr><td>Your balance can never be frozen</td><td class="ok">freeze authority revoked</td></tr>
+    <tr><td>Verify it yourself</td><td><a href="https://solscan.io/token/48YZxAUXFcEG14kEWHyBBaEx1gabprkXxQsz2ViuPZPN" target="_blank" rel="noopener">Solscan ↗</a></td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <span class="tag warnb">Legacy — not canonical</span>
+  <h2>Older 350,000,000-supply deployment</h2>
+  <div class="mut">Same name, different contract. Retired from the lineup; treat it as historical only.</div>
+  <div class="addr"><code id="a2">5nHg43TTkmCafvUPpjnvu57hWMRXUheN3CFdDuzdQM9x</code>
+    <button class="copy" data-t="a2">Copy</button></div>
+  <div class="warnbox">If an address does not match the canonical contract above, it is not the QSAM we publish.</div>
+  <div class="mut" style="margin-top:12px">Live authority status: <a href="https://solscan.io/token/5nHg43TTkmCafvUPpjnvu57hWMRXUheN3CFdDuzdQM9x" target="_blank" rel="noopener">Solscan ↗</a></div>
+</div>
+
+<div class="card">
+  <span class="tag pur">QBTC</span>
+  <h2>Quantum BTC</h2>
+  <div class="mut">Fixed 21,000,000 units. Not for sale. No market, no price, no offering of any kind.</div>
+  <div class="addr"><code id="a3">EMzyVtLsjyzMztFHQ7wYTGM8ojSDQJzstjmRsitnt1F9</code>
+    <button class="copy" data-t="a3">Copy</button></div>
+  <table>
+    <tr><td>Total supply</td><td>21,000,000</td></tr>
+    <tr><td>Offered for sale</td><td class="bad">Never</td></tr>
+    <tr><td>Verify it yourself</td><td><a href="https://solscan.io/token/EMzyVtLsjyzMztFHQ7wYTGM8ojSDQJzstjmRsitnt1F9" target="_blank" rel="noopener">Solscan ↗</a></td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <span class="tag">Engineering</span>
+  <h2>The chain behind it</h2>
+  <div class="mut">13th Chamber runs a proof-of-quantum-work settlement chain. Every block's quantum work is
+  re-derived independently in Python and on the JVM, and both must agree, on every commit.</div>
+  <table>
+    <tr><td>Block explorer</td><td><a href="https://mastercyril.github.io/qchain-explorer/" target="_blank" rel="noopener">Open ↗</a></td></tr>
+    <tr><td>Cross-language verification</td><td>Python and Kotlin must produce identical fingerprints</td></tr>
+    <tr><td>QBTC transfers on qchain</td><td class="ok">rejected at mempool and validation</td></tr>
+  </table>
+</div>
+
+<div class="foot">© 2026 13th Chamber LLC · <a href="https://13thchamberllc.com">13thchamberllc.com</a><br>
+QSAM and QBTC are utility tokens. Nothing here is an offer to sell securities.</div>
+</div>
+<script>
+document.querySelectorAll("button.copy").forEach(b=>b.onclick=async()=>{
+  await navigator.clipboard.writeText(document.getElementById(b.dataset.t).textContent);
+  b.textContent="Copied";setTimeout(()=>b.textContent="Copy",1400);
+});
+</script></body></html>
