@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>QSAM Wallets &amp; Payments | 13th Chamber LLC</title>
+<style>
+:root{color-scheme:dark}body{margin:0;background:#07070d;color:#e8e8f2;font:16px/1.6 system-ui,sans-serif}main{max-width:850px;margin:auto;padding:32px 20px}section{background:#10101c;border:1px solid #303048;border-radius:14px;padding:20px;margin:20px 0}h1,h2{line-height:1.2}a{color:#67e8f9}code{overflow-wrap:anywhere}button,.button{display:inline-block;padding:12px 18px;border:1px solid #67e8f9;border-radius:8px;background:#122734;color:#e8e8f2;font:inherit;cursor:pointer;text-decoration:none}button:disabled{opacity:.5;cursor:wait}.notice{border-left:4px solid #fbbf24;padding-left:14px}#status{white-space:pre-wrap;overflow-wrap:anywhere}nav{display:flex;gap:18px;flex-wrap:wrap}
+</style>
+</head>
+<body><main>
+<h1>QSAM Wallets &amp; Payments</h1>
+<p>13th Chamber LLC · Solana wallet access and payment-request preparation.</p>
+<nav><a href="https://13thchamberinc.wordpress.com/qsam-wallets-payments/">Open the WordPress wallet page</a><a href="token.html">Token registry</a><a href="./">QChain explorer</a></nav>
+<section aria-labelledby="details"><h2 id="details">Payment details</h2>
+<p>Receiving wallet:<br><code>4RAfa81mTRXuf8ESYGBpRCVosa1wTVh4LpTifFauRzgQ</code></p>
+<p>QSAM mint:<br><code>48YZxAUXFcEG14kEWHyBBaEx1gabprkXxQsz2ViuPZPN</code></p>
+<p>Requested test amount: 100 QSAM. This is a real-token payment request, not a devnet faucet request.</p>
+<p class="notice">Do not pay for an order through this page. Automatic checkout, Kotlin settlement verification, and receipt storage are not deployed. This standalone test does not purchase a product or mark an order paid.</p></section>
+<section aria-labelledby="phantom"><h2 id="phantom">Phantom connection</h2>
+<p>Connection shares your public address only. It does not sign or send a payment. Never enter a seed phrase or private key here.</p>
+<button id="connect" type="button">Connect Phantom</button>
+<p id="status" role="status" aria-live="polite">Not connected. No transaction has been submitted by this page.</p></section>
+<section aria-labelledby="test"><h2 id="test">Review a 100-QSAM test payment</h2>
+<p>This Solana Pay link requests the exact amount, mint, and recipient shown above. A compatible wallet must compose the transaction and obtain your approval. Check all details in the wallet; network and account-creation fees may apply. Wallet compatibility and the recipient token account have not been tested here.</p>
+<a class="button" href="solana:4RAfa81mTRXuf8ESYGBpRCVosa1wTVh4LpTifFauRzgQ?amount=100&amp;spl-token=48YZxAUXFcEG14kEWHyBBaEx1gabprkXxQsz2ViuPZPN&amp;label=13th%20Chamber%20LLC&amp;message=100%20QSAM%20test%20payment">Review 100 QSAM in a compatible wallet</a>
+<p>Opening this link or connecting Phantom is not payment confirmation. If your wallet does not support the link, no successful transfer should be assumed. After approving a transfer, retain its transaction signature for independent on-chain verification. Do not send repeatedly because this page has no automatic receipt display.</p></section>
+<section aria-labelledby="verification"><h2 id="verification">Verification status</h2>
+<ul><li>WordPress information page: published.</li><li>100-QSAM payment: not verified by this page.</li><li>Kotlin settlement service: not deployed or connected.</li><li>Order matching and duplicate-payment protection: not implemented.</li><li>Neon receipt integration: not configured.</li><li>QBTC: not accepted for payment.</li></ul>
+<p>Solana token receipt must not be inferred from QChain snapshot balances. No bridge is implemented.</p></section>
+</main>
+<script>
+'use strict';
+const connectButton=document.getElementById('connect');
+const statusText=document.getElementById('status');
+connectButton.addEventListener('click',async()=>{
+ const provider=window.phantom?.solana;
+ if(!provider?.isPhantom){statusText.textContent='Phantom not detected. Open this HTTPS page with Phantom available. No payment was submitted.';return;}
+ connectButton.disabled=true;
+ try{const result=await provider.connect();statusText.textContent='Connected public address: '+result.publicKey.toString()+'\nConnection only; payment has not been verified.';}
+ catch(error){statusText.textContent='Connection not completed: '+(error?.message||'request rejected')+'\nNo payment was submitted by this connection request.';}
+ finally{connectButton.disabled=false;}
+});
+if(window.phantom?.solana?.on){
+ window.phantom.solana.on('disconnect',()=>{statusText.textContent='Phantom disconnected. No settlement status is available.';});
+ window.phantom.solana.on('accountChanged',key=>{statusText.textContent=key?'Connected public address changed: '+key.toString()+'\nNo settlement status is available.':'Phantom account access removed.';});
+}
+</script>
+</body></html>
