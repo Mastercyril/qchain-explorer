@@ -8,4 +8,13 @@ This page is baked, not live. Every API response was captured from a real node, 
 the explorer renders with no server behind it. Mining, gossip, the Kotlin verifier
 and the self-replicating policy engine live in the private source repository.
 
+Canonical Solana QSAM is the Token-2022 mint
+`48YZxAUXFcEG14kEWHyBBaEx1gabprkXxQsz2ViuPZPN`: 6 decimals, fixed supply of
+1,000,000,000, mint and freeze authority revoked, metadata locked.
+`5nHg43TTkmCafvUPpjnvu57hWMRXUheN3CFdDuzdQM9x` is the legacy, non-canonical token.
+The chain wallet signs with Ed25519; post-quantum protection is on the roadmap.
+
+- Official hub: https://qsam.13thchamberllc.com
+- Qryptocurrency: https://13thchamberllc.com/qryptocurrency/
+
 13th Chamber LLC

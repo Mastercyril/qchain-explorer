@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>QSAM — Verified Token Contract | 13th Chamber LLC</title>
-<meta name="description" content="The canonical QSAM contract address, supply, and on-chain authority status, verifiable on Solscan."/>
+<meta name="description" content="The canonical QSAM contract is Token-2022 mint 48YZxAUXFcEG14kEWHyBBaEx1gabprkXxQsz2ViuPZPN: 6 decimals, fixed 1,000,000,000 supply, mint and freeze authority revoked, metadata locked."/>
 <style>
 :root{--cyan:#22d3ee;--purple:#a855f7;--bg:#07070d;--card:#0f0f18;--line:#242438;--txt:#e8e8f2;--dim:#8b8ba8}
 *{box-sizing:border-box}
@@ -42,35 +42,44 @@ a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}
 .stat .v{font-size:16px;font-weight:600}
 .warnbox{border-left:3px solid #fbbf24;background:rgba(251,191,36,.06);padding:14px 16px;border-radius:0 10px 10px 0;
  font-size:13.5px;color:#d8d2bb;margin-top:16px}
+.links{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 22px}
+.links a{border:1px solid rgba(34,211,238,.4);border-radius:999px;padding:6px 12px;font-size:13px}
 .foot{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:#6f6f8c;font-size:12.5px}
 </style></head><body><div class="wrap">
 <div class="brand">13th Chamber LLC · Token Registry</div>
 <h1>QSAM — the canonical contract</h1>
 <p class="lead">There is more than one token using the QSAM name. Only this contract is canonical. Everything below is
 verifiable on-chain in one click, without taking anyone's word for it.</p>
+<nav class="links" aria-label="Official QSAM pages">
+  <a href="https://qsam.13thchamberllc.com">Official QSAM hub</a>
+  <a href="https://13thchamberllc.com/qryptocurrency/">Qryptocurrency</a>
+</nav>
 
 <div class="card hi">
   <span class="tag">Canonical QSAM</span>
   <h2>Quantum System Access Module</h2>
-  <div class="mut">SPL token on Solana · 9 decimals</div>
+  <div class="mut">Token-2022 on Solana · 6 decimals</div>
   <div class="addr"><code id="a1">48YZxAUXFcEG14kEWHyBBaEx1gabprkXxQsz2ViuPZPN</code>
     <button class="copy" data-t="a1">Copy</button></div>
   <div class="grid">
-    <div class="stat"><div class="k">Total supply</div><div class="v">1,000,000,000</div></div>
-    <div class="stat"><div class="k">Mint authority</div><div class="v ok">none</div></div>
-    <div class="stat"><div class="k">Freeze authority</div><div class="v ok">none</div></div>
+    <div class="stat"><div class="k">Total supply</div><div class="v">1,000,000,000 fixed</div></div>
+    <div class="stat"><div class="k">Mint authority</div><div class="v ok">revoked</div></div>
+    <div class="stat"><div class="k">Freeze authority</div><div class="v ok">revoked</div></div>
   </div>
   <table>
+    <tr><td>Program</td><td>Token-2022</td></tr>
+    <tr><td>Decimals</td><td>6</td></tr>
     <tr><td>Supply can never be inflated</td><td class="ok">mint authority revoked</td></tr>
     <tr><td>Your balance can never be frozen</td><td class="ok">freeze authority revoked</td></tr>
+    <tr><td>Metadata</td><td class="ok">locked</td></tr>
     <tr><td>Verify it yourself</td><td><a href="https://solscan.io/token/48YZxAUXFcEG14kEWHyBBaEx1gabprkXxQsz2ViuPZPN" target="_blank" rel="noopener">Solscan ↗</a></td></tr>
   </table>
 </div>
 
 <div class="card">
-  <span class="tag warnb">Legacy — not canonical</span>
-  <h2>Older 350,000,000-supply deployment</h2>
-  <div class="mut">Same name, different contract. Retired from the lineup; treat it as historical only.</div>
+  <span class="tag warnb">Legacy, non-canonical token</span>
+  <h2>Legacy, non-canonical token</h2>
+  <div class="mut">Older 350,000,000-supply deployment on the classic SPL Token program (9 decimals). Same name, different contract. Retired from the lineup; treat it as historical only.</div>
   <div class="addr"><code id="a2">5nHg43TTkmCafvUPpjnvu57hWMRXUheN3CFdDuzdQM9x</code>
     <button class="copy" data-t="a2">Copy</button></div>
   <div class="warnbox">If an address does not match the canonical contract above, it is not the QSAM we publish.</div>
@@ -102,7 +111,7 @@ verifiable on-chain in one click, without taking anyone's word for it.</p>
   </table>
 </div>
 
-<div class="foot">© 2026 13th Chamber LLC · <a href="https://13thchamberllc.com">13thchamberllc.com</a><br>
+<div class="foot">© 2026 13th Chamber LLC · <a href="https://13thchamberllc.com">13thchamberllc.com</a> · <a href="https://qsam.13thchamberllc.com">Official QSAM hub</a> · <a href="https://13thchamberllc.com/qryptocurrency/">Qryptocurrency</a><br>
 QSAM and QBTC are utility tokens. Nothing here is an offer to sell securities.</div>
 </div>
 <script>

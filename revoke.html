@@ -28,7 +28,7 @@ button.ghost{background:transparent;border:1px solid var(--line);color:#c3c8dc}
 a{color:var(--cyan)}
 </style></head><body><div class="wrap">
 <h1>Revoke Mint &amp; Freeze Authority</h1>
-<div class="sub">13th Chamber LLC · QSAM 350M &amp; QBTC 21M · this page can only revoke. It cannot move any tokens.</div>
+<div class="sub">13th Chamber LLC · legacy, non-canonical QSAM (350M) &amp; QBTC 21M · this page can only revoke. It cannot move any tokens. The canonical QSAM mint (Token-2022, 6 decimals) is not listed here; its mint and freeze authority are already revoked and its metadata is locked.</div>
 
 <div class="card">
   <div class="mint"><span>Wallet</span><span id="who" class="mono">not connected</span></div>
@@ -47,7 +47,7 @@ a{color:var(--cyan)}
 <script>
 const TREASURY="2iG3NGn2pcRabznaU1ndC17JcQqewERhQL53G3Z5Suff";
 const MINTS=[
- {label:"QSAM 350M", mint:"5nHg43TTkmCafvUPpjnvu57hWMRXUheN3CFdDuzdQM9x"},
+ {label:"Legacy, non-canonical QSAM (350M)", mint:"5nHg43TTkmCafvUPpjnvu57hWMRXUheN3CFdDuzdQM9x"},
  {label:"QBTC 21M",  mint:"EMzyVtLsjyzMztFHQ7wYTGM8ojSDQJzstjmRsitnt1F9"}
 ];
 const RPC="https://api.mainnet-beta.solana.com";
