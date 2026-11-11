@@ -122,6 +122,9 @@ window.__SNAP__ = {"/api/status": {"chain_id": "13th-chamber-powq-1", "height": 
   }
   .net b{color:var(--cyan)}
   .lock{font-size:15px;line-height:1}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .sitelinks{display:flex;gap:14px;flex-wrap:wrap;margin:-10px 0 18px;font-size:13px}
   .note{font-size:11.5px;color:var(--dim);line-height:1.6;margin-top:14px;font-family:var(--mono)}
   .ampbar{height:5px;border-radius:3px;background:linear-gradient(90deg,var(--cyan),var(--purple));min-width:22px;display:inline-block;vertical-align:middle;margin-right:8px}
 </style>
@@ -141,6 +144,12 @@ window.__SNAP__ = {"/api/status": {"chain_id": "13th-chamber-powq-1", "height": 
       <button onclick="verify()">Run audit</button>
     </div>
   </header>
+
+  <nav class="sitelinks" aria-label="Official QSAM pages">
+    <a href="token.html">Canonical QSAM · Token-2022 · 6 decimals</a>
+    <a href="https://qsam.13thchamberllc.com">Official QSAM hub</a>
+    <a href="https://13thchamberllc.com/qryptocurrency/">Qryptocurrency</a>
+  </nav>
 
   <div class="notice" id="notice"></div>
   <div class="net" id="net"></div>
@@ -170,6 +179,10 @@ window.__SNAP__ = {"/api/status": {"chain_id": "13th-chamber-powq-1", "height": 
     Two assets settle here: QSAM is transferable and capped at 1,000,000,000; QBTC is capped at
     21,000,000 and can never move, which is what makes "not for sale" a property of the ledger
     rather than a promise.
+    On Solana, canonical QSAM is Token-2022 mint 48YZxAUXFcEG14kEWHyBBaEx1gabprkXxQsz2ViuPZPN:
+    6 decimals, fixed supply of 1,000,000,000, mint and freeze authority revoked, metadata locked.
+    5nHg43TTkmCafvUPpjnvu57hWMRXUheN3CFdDuzdQM9x is the legacy, non-canonical token.
+    Chain signatures use Ed25519; post-quantum wallet protection is on the roadmap.
   </div>
 </div>
 
